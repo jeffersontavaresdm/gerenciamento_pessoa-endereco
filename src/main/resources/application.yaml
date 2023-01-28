@@ -1,0 +1,17 @@
+server:
+  port: 3100
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: user
+    password:
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /db-console
+      settings.trace: false
+      settings.web-allow-others: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
