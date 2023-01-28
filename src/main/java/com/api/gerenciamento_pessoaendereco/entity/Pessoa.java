@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -48,7 +49,7 @@ public class Pessoa {
       this.id,
       this.nome,
       this.dataNascimento,
-      getEnderecoPrincipal() != null ? getEnderecoPrincipal().toDTO() : null
+      Optional.ofNullable(getEnderecoPrincipal()).map(Endereco::toDTO).orElse(null)
     );
   }
 }
