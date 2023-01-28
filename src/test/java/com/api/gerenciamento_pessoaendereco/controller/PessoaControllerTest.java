@@ -36,9 +36,6 @@ public class PessoaControllerTest {
   @Mock
   private EnderecoRepository enderecoRepository;
 
-  @Mock
-  private PessoaService pessoaService;
-
   private MockMvc controller;
 
   @BeforeEach
@@ -79,9 +76,7 @@ public class PessoaControllerTest {
 
   @Test
   public void buscarPorId_retornarPessoaDTO_casoEncontrada() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
-    pessoa.adicionarEndereco(endereco);
+    Pessoa pessoa = criarPessoa();
 
     Mockito
       .when(pessoaRepository.findPessoaById(1L))
@@ -98,9 +93,7 @@ public class PessoaControllerTest {
 
   @Test
   public void buscarPorId_lancarExcecao_casoNaoEncontrada() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
-    pessoa.adicionarEndereco(endereco);
+    Pessoa pessoa = criarPessoa();
 
     Mockito
       .when(pessoaRepository.findPessoaById(1L))
@@ -113,9 +106,7 @@ public class PessoaControllerTest {
 
   @Test
   public void buscarPorNomeEDataNascimento_retornarPessoaDTO_casoEncontrada() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
-    pessoa.adicionarEndereco(endereco);
+    Pessoa pessoa = criarPessoa();
 
     Mockito
       .when(pessoaRepository.findByNomeAndDataNascimento(Mockito.anyString(), Mockito.any(LocalDate.class)))
@@ -132,9 +123,7 @@ public class PessoaControllerTest {
 
   @Test
   public void buscarPorNomeEDataNascimento_lancarExcecao_casoNaoEncontrada() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
-    pessoa.adicionarEndereco(endereco);
+    Pessoa pessoa = criarPessoa();
 
     Mockito
       .when(pessoaRepository.findByNomeAndDataNascimento(pessoa.getNome(), pessoa.getDataNascimento()))
@@ -146,28 +135,9 @@ public class PessoaControllerTest {
   }
 
   @Test
-  public void criar_retornarPessoaDTO_casoCriada() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
-    pessoa.adicionarEndereco(endereco);
-
-    Mockito
-      .when(pessoaRepository.save(Mockito.any(Pessoa.class)))
-      .thenReturn(pessoa);
-
-    controller
-      .perform(MockMvcRequestBuilders.get("/pessoa/criar"))
-      .andExpect(MockMvcResultMatchers.status().isOk())
-      .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-      .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-      .andExpect(MockMvcResultMatchers.jsonPath("$.nome", Matchers.is("Jonh Snow")))
-      .andExpect(MockMvcResultMatchers.jsonPath("$.endereco.logradouro", Matchers.is("Rua ABC")));
-  }
-
-  @Test
   public void criar_retornarPessoaDTO_casoPessoaPayloadSejaValido() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
+    Pessoa pessoa = criarPessoa();
+    Endereco endereco = pessoa.getEnderecoPrincipal();
 
     EnderecoPayload enderecoPayload = new EnderecoPayload(
       endereco.getLogradouro(),
@@ -199,8 +169,8 @@ public class PessoaControllerTest {
 
   @Test
   public void editar_retornarPessoaDTO_casoPessoaPayloadSejaValido() throws Exception {
-    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
-    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
+    Pessoa pessoa = criarPessoa();
+    Endereco endereco = pessoa.getEnderecoPrincipal();
 
     EnderecoPayload enderecoPayload = new EnderecoPayload(
       endereco.getLogradouro(),
@@ -209,8 +179,6 @@ public class PessoaControllerTest {
       endereco.getCidade()
     );
     PessoaPayload payload = new PessoaPayload("Nome modificado", LocalDate.of(2011, 1, 1), enderecoPayload);
-
-    pessoa.adicionarEndereco(endereco);
 
     Mockito
       .when(pessoaRepository.findPessoaById(1L))
@@ -244,5 +212,13 @@ public class PessoaControllerTest {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private Pessoa criarPessoa() {
+    Pessoa pessoa = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
+    Endereco endereco = new Endereco(1L, "Rua ABC", "11111111", 100, "Westeros", pessoa, true);
+    pessoa.adicionarEndereco(endereco);
+
+    return pessoa;
   }
 }
