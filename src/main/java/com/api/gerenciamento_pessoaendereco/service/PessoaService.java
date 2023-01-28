@@ -34,7 +34,8 @@ public class PessoaService extends BaseService<Pessoa> {
   }
 
   public List<PessoaDTO> listar() {
-    var pessoas = findAll()
+    var pessoas = pessoaRepository
+      .findAll()
       .stream()
       .map(Pessoa::toDTO)
       .toList();
@@ -68,7 +69,7 @@ public class PessoaService extends BaseService<Pessoa> {
   }
 
   public PessoaDTO buscarPorId(Long id) {
-    Pessoa pessoa = findByIdOrNull(id);
+    Pessoa pessoa = pessoaRepository.findPessoaById(id);
 
     if (pessoa != null) {
       log.info("Buscando pessoa com id {}", pessoa.getId());
@@ -95,7 +96,7 @@ public class PessoaService extends BaseService<Pessoa> {
   public PessoaDTO editar(Long pessoaId, PessoaPayload payload) {
     log.info("Editando pessoa de id {}...", pessoaId);
 
-    var pessoa = findByIdOrNull(pessoaId);
+    var pessoa = pessoaRepository.findPessoaById(pessoaId);
 
     if (pessoa == null) {
       log.error("Pessoa com id {} não encontrada.", pessoaId);

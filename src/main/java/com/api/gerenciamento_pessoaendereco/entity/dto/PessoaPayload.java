@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public record PessoaPayload(
-  Long id,
   String nome,
   LocalDate dataNascimento,
   EnderecoPayload endereco

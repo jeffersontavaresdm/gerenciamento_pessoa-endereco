@@ -48,7 +48,7 @@ public class Pessoa {
       this.id,
       this.nome,
       this.dataNascimento,
-      getEnderecoPrincipal().toDTO()
+      getEnderecoPrincipal() != null ? getEnderecoPrincipal().toDTO() : null
     );
   }
 }
