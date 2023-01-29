@@ -7,6 +7,7 @@ import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaPayload;
 import com.api.gerenciamento_pessoaendereco.repository.EnderecoRepository;
 import com.api.gerenciamento_pessoaendereco.repository.PessoaRepository;
 import com.api.gerenciamento_pessoaendereco.service.PessoaService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.hamcrest.Matchers;
@@ -204,14 +205,10 @@ public class PessoaControllerTest {
       .andExpect(MockMvcResultMatchers.jsonPath("$.nome", Matchers.is("Nome modificado")));
   }
 
-  private String converterParaJson(final Object object) {
+  private String converterParaJson(final Object object) throws JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
-    try {
-      return objectMapper.writeValueAsString(object);
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    return objectMapper.writeValueAsString(object);
   }
 
   private Pessoa criarPessoa() {

@@ -1,5 +1,6 @@
 package com.api.gerenciamento_pessoaendereco.controller;
 
+import com.api.gerenciamento_pessoaendereco.entity.Endereco;
 import com.api.gerenciamento_pessoaendereco.entity.dto.EnderecoDTO;
 import com.api.gerenciamento_pessoaendereco.entity.dto.EnderecoPayload;
 import com.api.gerenciamento_pessoaendereco.service.EnderecoService;
@@ -40,7 +41,7 @@ public class EnderecoController {
     @PathVariable Long pessoaId,
     @PathVariable Long enderecoId
   ) {
-    EnderecoDTO endereco = enderecoService.definirEnderecoPrincipal(pessoaId, enderecoId);
+    Endereco endereco = enderecoService.definirEnderecoPrincipal(pessoaId, enderecoId);
 
     if (endereco == null) {
       String mensagem = "Pessoa de id " + pessoaId + " não está relacionada com Endereço de id " + enderecoId;
@@ -50,6 +51,6 @@ public class EnderecoController {
         .body(ProblemDetail.forStatusAndDetail(HttpStatus.EXPECTATION_FAILED, mensagem));
     }
 
-    return ResponseEntity.ok(endereco);
+    return ResponseEntity.ok(endereco.toDTO());
   }
 }

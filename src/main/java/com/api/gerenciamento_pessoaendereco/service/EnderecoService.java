@@ -49,7 +49,7 @@ public class EnderecoService extends BaseService<Endereco> {
 
   @Transactional
   public EnderecoDTO criar(Long pessoaId, EnderecoPayload payload) {
-    Pessoa pessoa = pessoaRepository.findById(pessoaId).orElse(null);
+    Pessoa pessoa = pessoaRepository.findPessoaById(pessoaId);
 
     if (pessoa == null) {
       log.error("Pessoa com id {} não encontrada.", pessoaId);
@@ -62,8 +62,8 @@ public class EnderecoService extends BaseService<Endereco> {
   }
 
   @Transactional
-  public EnderecoDTO definirEnderecoPrincipal(Long pessoaId, Long enderecoId) {
-    Pessoa pessoa = pessoaRepository.findById(pessoaId).orElse(null);
+  public Endereco definirEnderecoPrincipal(Long pessoaId, Long enderecoId) {
+    Pessoa pessoa = pessoaRepository.findPessoaById(pessoaId);
 
     if (pessoa == null) {
       String msg = "Pessoa com id " + pessoaId + " não encontrada.";
@@ -71,7 +71,7 @@ public class EnderecoService extends BaseService<Endereco> {
       throw new PessoaNaoEncontradaException(msg);
     }
 
-    Endereco endereco = findByIdOrNull(enderecoId);
+    Endereco endereco = enderecoRepository.findEnderecoById(enderecoId);
 
     if (endereco == null) {
       String msg = "Endereço com id " + enderecoId + " não encontrado.";
@@ -79,7 +79,7 @@ public class EnderecoService extends BaseService<Endereco> {
       throw new EnderecoNaoEncontradoException(msg);
     }
 
-    validarRelacionamentoPessoaEndereco(pessoaId, enderecoId);
+    validarRelacionamentoPessoaEndereco(pessoa.getId(), endereco.getId());
 
     Endereco enderecoAntigo = pessoa
       .getEnderecos()
@@ -96,19 +96,21 @@ public class EnderecoService extends BaseService<Endereco> {
     endereco.setPrincipal(true);
     enderecoRepository.save(endereco);
 
-
     pessoaRepository.save(pessoa);
 
     log.info("Endereço principal da pessoa de id {} atualizado. Novo endereço principal: {}", pessoaId, endereco);
 
-    return endereco.toDTO();
+    return endereco;
   }
 
   private void validarRelacionamentoPessoaEndereco(Long pessoaId, Long enderecoId) throws PessoaEnderecoNaoRelacionadoException {
     List<Endereco> enderecos = enderecoRepository.findAllByPessoaId(pessoaId);
-    boolean pessoaEnderecoNaoRelacionado = enderecos.stream().noneMatch(e -> Objects.equals(e.getId(), enderecoId));
 
-    if (pessoaEnderecoNaoRelacionado) {
+    boolean pessoaEnderecoNaoRelacionados = enderecos
+      .stream()
+      .noneMatch(endereco -> Objects.equals(endereco.getId(), enderecoId));
+
+    if (pessoaEnderecoNaoRelacionados) {
       String mensagem = "Pessoa de id " + pessoaId + " não relacionada com endereço de id " + enderecoId;
 
       log.error(mensagem);
