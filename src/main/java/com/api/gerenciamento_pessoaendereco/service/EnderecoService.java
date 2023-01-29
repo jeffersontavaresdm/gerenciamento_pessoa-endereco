@@ -35,6 +35,13 @@ public class EnderecoService extends BaseService<Endereco> {
     this.pessoaRepository = pessoaRepository;
   }
 
+  /**
+   * Retorna a lista de endereços de uma pessoa.
+   *
+   * @param pessoaId ID da pessoa a ser buscada
+   * @return Lista de EnderecoDTO
+   * @throws PessoaNaoEncontradaException Caso a pessoa não seja encontrada
+   */
   public List<EnderecoDTO> listar(Long pessoaId) {
     Pessoa pessoa = pessoaRepository.findPessoaById(pessoaId);
 
@@ -55,6 +62,13 @@ public class EnderecoService extends BaseService<Endereco> {
     return enderecos;
   }
 
+  /**
+   * Método para criar um endereço vinculado a uma pessoa específica.
+   *
+   * @param pessoaId ID da pessoa vinculada ao endereço.
+   * @param payload  Dados enviados para criação do endereço no banco de dados.
+   * @return DTO do endereço criado.
+   */
   @Transactional
   public EnderecoDTO criar(Long pessoaId, EnderecoPayload payload) {
     Pessoa pessoa = pessoaRepository.findPessoaById(pessoaId);
@@ -69,6 +83,13 @@ public class EnderecoService extends BaseService<Endereco> {
     return endereco.toDTO();
   }
 
+  /**
+   * Método para definir um novo endereço principal da lista de endereços da pessoa.
+   *
+   * @param pessoaId   ID da pessoa vinculada ao endereço.
+   * @param enderecoId ID do endereço para se tornar o novo endereço principal.
+   * @return DTO do novo endereço principal.
+   */
   @Transactional
   public Endereco definirEnderecoPrincipal(Long pessoaId, Long enderecoId) {
     Pessoa pessoa = pessoaRepository.findPessoaById(pessoaId);
@@ -111,6 +132,14 @@ public class EnderecoService extends BaseService<Endereco> {
     return endereco;
   }
 
+  /**
+   * Valida o relacionamento entre a pessoa e o endereço.
+   *
+   * @param pessoaId   ID da pessoa relacionada ao endereço.
+   * @param enderecoId ID do endereço relacionado à pessoa.
+   * @throws PessoaEnderecoNaoRelacionadoException Lança exceção caso não haja relacionamento entre a pessoa e o
+   *                                               endereço.
+   */
   private void validarRelacionamentoPessoaEndereco(Long pessoaId, Long enderecoId) throws PessoaEnderecoNaoRelacionadoException {
     List<Endereco> enderecos = enderecoRepository.findAllByPessoaId(pessoaId);
 

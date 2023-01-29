@@ -33,6 +33,11 @@ public class PessoaService extends BaseService<Pessoa> {
     this.enderecoRepository = enderecoRepository;
   }
 
+  /**
+   * Retorna a lista de todas as pessoas cadastradas.
+   *
+   * @return Lista de {@link PessoaDTO}
+   */
   public List<PessoaDTO> listar() {
     var pessoas = pessoaRepository
       .findAll()
@@ -45,6 +50,13 @@ public class PessoaService extends BaseService<Pessoa> {
     return pessoas;
   }
 
+  /**
+   * Cria uma nova pessoa com base nos dados fornecidos no objeto {@link PessoaPayload}.
+   *
+   * @param pessoaPayload Dados da pessoa a ser criada
+   * @return {@link PessoaDTO} da pessoa criada
+   * @throws PessoaJaExisteException caso já exista uma pessoa com o mesmo nome e data de nascimento
+   */
   @Transactional
   public PessoaDTO criar(PessoaPayload pessoaPayload) {
     log.info("Criando nova pessoa. Pessoa: {}", pessoaPayload);
@@ -68,6 +80,13 @@ public class PessoaService extends BaseService<Pessoa> {
     return pessoaSalva.toDTO();
   }
 
+  /**
+   * Busca uma pessoa pelo seu identificador.
+   *
+   * @param id Identificador da pessoa
+   * @return {@link PessoaDTO} da pessoa encontrada
+   * @throws PessoaNaoEncontradaException caso não exista uma pessoa com o id informado
+   */
   public PessoaDTO buscarPorId(Long id) {
     Pessoa pessoa = pessoaRepository.findPessoaById(id);
 
@@ -80,6 +99,14 @@ public class PessoaService extends BaseService<Pessoa> {
     }
   }
 
+  /**
+   * Busca uma pessoa pelo seu nome e data de nascimento.
+   *
+   * @param nome           Nome da pessoa
+   * @param dataNascimento Data de nascimento da pessoa
+   * @return {@link PessoaDTO} da pessoa encontrada
+   * @throws PessoaNaoEncontradaException caso não exista uma pessoa com o nome e e data de nascimento informado
+   */
   public PessoaDTO buscarPorNomeEDataNascimento(String nome, LocalDate dataNascimento) {
     Pessoa pessoa = pessoaRepository.findByNomeAndDataNascimento(nome, dataNascimento);
 
@@ -92,6 +119,14 @@ public class PessoaService extends BaseService<Pessoa> {
     }
   }
 
+  /**
+   * Edita uma pessoa existente, com base nos dados fornecidos no objeto {@link PessoaPayload}.
+   *
+   * @param pessoaId Identificador da pessoa a ser editada
+   * @param payload  Dados da pessoa a serem editados
+   * @return {@link PessoaDTO} da pessoa editada
+   * @throws PessoaNaoEncontradaException caso não exista uma pessoa com o id informado
+   */
   @Transactional
   public PessoaDTO editar(Long pessoaId, PessoaPayload payload) {
     log.info("Editando pessoa de id {}...", pessoaId);

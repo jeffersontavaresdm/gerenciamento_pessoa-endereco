@@ -35,13 +35,11 @@ public class EnderecoControllerTest {
   @Mock
   private PessoaRepository pessoaRepository;
 
-  private EnderecoService enderecoService;
-
   MockMvc controller;
 
   @BeforeEach
   public void setUp() {
-    enderecoService = new EnderecoService(enderecoRepository, pessoaRepository);
+    EnderecoService enderecoService = new EnderecoService(enderecoRepository, pessoaRepository);
     EnderecoController enderecoController = new EnderecoController(enderecoService);
     controller = MockMvcBuilders.standaloneSetup(enderecoController).build();
   }
