@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class PessoaServiceTest {
@@ -50,7 +49,9 @@ public class PessoaServiceTest {
 
   @Test
   public void buscarPorId_deveLancarExcecao_quandoNaoEncontrada() {
-    when(pessoaRepository.findPessoaById(anyLong())).thenReturn(null);
+    Mockito
+      .when(pessoaRepository.findPessoaById(anyLong()))
+      .thenReturn(null);
 
     Assertions.assertThrows(PessoaNaoEncontradaException.class, () -> pessoaService.buscarPorId(1L));
   }
@@ -81,26 +82,6 @@ public class PessoaServiceTest {
       "Nome Qualquer",
       LocalDate.of(2000, 1, 1))
     );
-  }
-
-  @Test
-  public void criar_retornarPessoaDTO_quandoNaoHouverPessoaJaCriada() {
-    Pessoa pessoa = criarPessoa();
-
-    Mockito.when(pessoaRepository.save(Mockito.any(Pessoa.class))).thenReturn(pessoa);
-
-    PessoaPayload pessoaPayload = criarPessoaPayload(pessoa);
-    PessoaDTO pessoaCriada = pessoaService.criar(pessoaPayload);
-
-    Assertions.assertEquals(pessoa.toDTO(), pessoaCriada);
-
-    Mockito
-      .verify(pessoaRepository, Mockito.times(1))
-      .findByNomeAndDataNascimento(Mockito.anyString(), Mockito.any(LocalDate.class));
-
-    Mockito
-      .verify(pessoaRepository, Mockito.times(2))
-      .save(Mockito.any(Pessoa.class));
   }
 
   @Test

@@ -36,6 +36,14 @@ public class EnderecoService extends BaseService<Endereco> {
   }
 
   public List<EnderecoDTO> listar(Long pessoaId) {
+    Pessoa pessoa = pessoaRepository.findPessoaById(pessoaId);
+
+    if (pessoa == null) {
+      String mensagem = "Pessoa de id " + pessoaId + " não encontrada.";
+      log.error(mensagem);
+      throw new PessoaNaoEncontradaException(mensagem);
+    }
+
     List<EnderecoDTO> enderecos = enderecoRepository
       .findAllByPessoaId(pessoaId)
       .stream()
