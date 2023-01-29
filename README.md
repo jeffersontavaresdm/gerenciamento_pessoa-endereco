@@ -60,8 +60,8 @@
         <span >Buscar pessoa por nome e data de nascimento</span >
         <br >
         <span >Exemplo:</span >
-        <a href="http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01/" target="_blank" >
-          <b >http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01/</b >
+        <a href="http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01" target="_blank" >
+          <b >http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01</b >
         </a >
       </li >
       <li >
