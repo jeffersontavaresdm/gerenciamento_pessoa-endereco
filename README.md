@@ -41,46 +41,70 @@
     <b >Pessoa:</b >
     <ul >
       <li >
-        <a href="http://localhost:3100/pessoa/listar" >
-          Listar pessoas
+        <span >Listar pessoas</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/pessoa/listar" target="_blank" >
+          <b >http://localhost:3100/pessoa/listar</b >
         </a >
       </li >
       <li >
-        <a href="http://localhost:3100/pessoa/buscar/1" >
-          Buscar pessoa por id
+        <span >Buscar pessoa por ID</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/pessoa/buscar/" target="_blank" >
+          <b >http://localhost:3100/pessoa/buscar/1</b >
         </a >
       </li >
       <li >
-        <a href="http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01/" >
-          Buscar pessoa por nome e data de nascimento
+        <span >Buscar pessoa por nome e data de nascimento</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01/" target="_blank" >
+          <b >http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01/</b >
         </a >
       </li >
       <li >
-        <a href="http://localhost:3100/pessoa/criar" >
-          Criar pessoa
+        <span >Criar pessoa</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/pessoa/criar" target="_blank" >
+          <b >http://localhost:3100/pessoa/criar</b >
         </a >
       </li >
       <li >
-        <a href="http://localhost:3100/pessoa/editar/1" >
-          Editar pessoa
+        <span >Editar pessoa</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/pessoa/editar/1" target="_blank" >
+          <b >http://localhost:3100/pessoa/editar/1</b >
         </a >
       </li >
     </ul >
     <b >Endereço:</b >
     <ul >
       <li >
-        <a href="http://localhost:3100/endereco/listar/1" >
-          Listar endereços da pessoa
+        <span >Listar endereços da pessoa</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/endereco/listar/1" target="_blank" >
+          <b >http://localhost:3100/endereco/listar/1</b >
         </a >
       </li >
       <li >
-        <a href="http://localhost:3100/endereco/criar/1" >
-          Criar endereço para pessoa
+        <span >Criar endereço para pessoa</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/endereco/criar/1" target="_blank" >
+          <b >http://localhost:3100/endereco/criar/1</b >
         </a >
       </li >
       <li >
-        <a href="http://localhost:3100/endereco/definir-endereco-principal/1/1" >
-          Definir endereço principal
+        <span >Definir endereço principal</span >
+        <br >
+        <span >Exemplo:</span >
+        <a href="http://localhost:3100/endereco/definir-endereco-principal/1/1" target="_blank" >
+          <b >http://localhost:3100/endereco/definir-endereco-principal/1/1</b >
         </a >
       </li >
     </ul >
