@@ -35,4 +35,54 @@
       </b >
     </li >
   </ul >
+
+  <h3 style="text-align: center" >Lista de endpoints da API</h3 >
+  <div >
+    <b >Pessoa:</b >
+    <ul >
+      <li >
+        <a href="http://localhost:3100/pessoa/listar" >
+          Listar pessoas
+        </a >
+      </li >
+      <li >
+        <a href="http://localhost:3100/pessoa/buscar/1" >
+          Buscar pessoa por id
+        </a >
+      </li >
+      <li >
+        <a href="http://localhost:3100/pessoa/buscar?nome=nome&dataNascimento=2000-01-01/" >
+          Buscar pessoa por nome e data de nascimento
+        </a >
+      </li >
+      <li >
+        <a href="http://localhost:3100/pessoa/criar" >
+          Criar pessoa
+        </a >
+      </li >
+      <li >
+        <a href="http://localhost:3100/pessoa/editar/1" >
+          Editar pessoa
+        </a >
+      </li >
+    </ul >
+    <b >Endereço:</b >
+    <ul >
+      <li >
+        <a href="http://localhost:3100/endereco/listar/1" >
+          Listar endereços da pessoa
+        </a >
+      </li >
+      <li >
+        <a href="http://localhost:3100/endereco/criar/1" >
+          Criar endereço para pessoa
+        </a >
+      </li >
+      <li >
+        <a href="http://localhost:3100/endereco/definir-endereco-principal/1/1" >
+          Definir endereço principal
+        </a >
+      </li >
+    </ul >
+  </div >
 </div >
