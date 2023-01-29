@@ -16,19 +16,23 @@
     <li >
       Se a aplicacão foi construída e iniciada corretamente, você deve ver a seguinte saída no terminal:
       <br >
-      <b style="color: darkgray" >
+      <span style="color: darkgray" >
         ...
+        <br >
         [INFO] Tomcat started on port(s): 3100 (http) with context path ''
+        <br >
         ...
-      </b >
+      </span >
     </li >
     <li >
       Em seguida, você pode acessar a aplicacão digitando a seguinte URL:
       <br >
-      <b style="color: darkgray" >http://localhost:3100</b >
+      <span style="color: darkgray" >http://localhost:3100</span >
       <br >
-      <i >Exemplo: </i ><b style="color: darkgray" ></b >
-      <a href="http://localhost:3100" >http://localhost:3100/pessoa/listar</a >
+      <i >Exemplo: </i >
+      <b style="color: darkgray" >
+        <a href="http://localhost:3100" >http://localhost:3100/pessoa/listar</a >
+      </b >
     </li >
   </ul >
 </div >
