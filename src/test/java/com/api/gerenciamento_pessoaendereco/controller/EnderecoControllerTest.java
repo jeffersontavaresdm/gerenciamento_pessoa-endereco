@@ -47,7 +47,7 @@ public class EnderecoControllerTest {
   }
 
   @Test
-  public void listar_retornaUmaListaDeEnderecoDTO_sePessoaForEncontrada() throws Exception {
+  public void listar_retornaListaDeEnderecoDTO_sePessoaForEncontrada() throws Exception {
     Pessoa pessoa01 = new Pessoa(1L, "Jonh Snow", LocalDate.of(2011, 1, 1), new ArrayList<>());
     Pessoa pessoa02 = new Pessoa(2L, "Aria Stark", LocalDate.of(2011, 2, 2), new ArrayList<>());
     Endereco endereco01 = new Endereco(1L, "RUA ABC", "11111111", 100, "Westeros", pessoa01, true);
@@ -61,6 +61,8 @@ public class EnderecoControllerTest {
     List<Endereco> enderecos01 = List.of(endereco01);
     List<Endereco> enderecos02 = List.of(endereco02, endereco04);
 
+    Mockito.when(pessoaRepository.findPessoaById(pessoa01.getId())).thenReturn(pessoa01);
+    Mockito.when(pessoaRepository.findPessoaById(pessoa02.getId())).thenReturn(pessoa02);
     Mockito.when(enderecoRepository.findAllByPessoaId(pessoa01.getId())).thenReturn(enderecos01);
     Mockito.when(enderecoRepository.findAllByPessoaId(pessoa02.getId())).thenReturn(enderecos02);
 

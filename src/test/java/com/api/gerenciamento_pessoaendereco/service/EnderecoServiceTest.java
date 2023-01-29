@@ -37,6 +37,7 @@ public class EnderecoServiceTest {
   public void listar_retornarListaEnderecos_sePessoaEncontrada() {
     Pessoa pessoa = criarPessoa();
 
+    Mockito.when(pessoaRepository.findPessoaById(pessoa.getId())).thenReturn(pessoa);
     Mockito.when(enderecoRepository.findAllByPessoaId(pessoa.getId())).thenReturn(List.of(pessoa.getEnderecoPrincipal()));
 
     List<EnderecoDTO> enderecos = service.listar(1L);
