@@ -8,14 +8,10 @@
   <ul >
     <li >Acesse o diretório da aplicacão através do terminal.</li >
     <li >
-      Execute o seguinte comando para construir o projeto:
-      <br >
-      <b ><i >gradle build</i ></b >
+      Execute o seguinte comando para construir o projeto: <b ><i >gradle build</i ></b >
     </li >
     <li >
-      Em seguida, execute o seguinte comando para iniciar a aplicacão:
-      <br >
-      <b ><i >./gradlew bootRun</i ></b >
+      Em seguida, execute o seguinte comando para iniciar a aplicacão: <b ><i >./gradlew bootRun</i ></b >
     </li >
     <li >
       Se a aplicacão foi construída e iniciada corretamente, você deve ver a seguinte saída no terminal:
