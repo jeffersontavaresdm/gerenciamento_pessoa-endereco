@@ -109,6 +109,9 @@ public class PessoaServiceTest {
   public void editar_retornarPessoaDTO_casoPessoaEncontrada() {
     Pessoa pessoa = criarPessoa();
     Endereco endereco = pessoa.getEnderecoPrincipal();
+    EnderecoPayload enderecoPayload = criarEnderecoPayload(endereco);
+    String nomeModificado = "Novo Nome";
+    PessoaPayload pessoaPayload = new PessoaPayload(nomeModificado, pessoa.getDataNascimento(), enderecoPayload);
 
     Long pessoaId = pessoa.getId();
 
@@ -116,12 +119,9 @@ public class PessoaServiceTest {
     Mockito.when(pessoaRepository.save(Mockito.any(Pessoa.class))).thenReturn(pessoa);
     Mockito.when(enderecoRepository.save(Mockito.any(Endereco.class))).thenReturn(endereco);
 
-    EnderecoPayload enderecoPayload = criarEnderecoPayload(endereco);
-    PessoaPayload pessoaPayload = new PessoaPayload("nome modificado", pessoa.getDataNascimento(), enderecoPayload);
-
     PessoaDTO pessoaEditada = pessoaService.editar(pessoaId, pessoaPayload);
 
-    Assertions.assertEquals("nome modificado", pessoaEditada.nome());
+    Assertions.assertEquals(nomeModificado, pessoaEditada.nome());
 
     Mockito
       .verify(pessoaRepository, Mockito.times(1))
