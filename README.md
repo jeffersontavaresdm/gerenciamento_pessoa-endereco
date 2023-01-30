@@ -1,9 +1,5 @@
-<div
-    style="
-    display: flex;
-    flex-direction: column;
-" >
-  <h1 style="text-align: center" >Gerenciamento de Pessoa/Endereço</h1 >
+<div >
+  <h1 align="center" >Gerenciamento de Pessoa/Endereço</h1 >
   <h3 >Rodar a aplicação:</h3 >
   <ul >
     <li >Acesse o diretório da aplicacão através do terminal.</li >
@@ -113,7 +109,7 @@
     </i >
     </li >
   </ul >
-  <h3 style="text-align: center" >Lista de endpoints da API</h3 >
+  <h2 align="center" >Lista de endpoints da API</h2 >
   <div >
     <b >Pessoa:</b >
     <ul >
