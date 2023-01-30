@@ -35,7 +35,7 @@
       </b >
     </li >
   </ul >
-  <h3>Rodar em um container Docker:</h3>
+  <h3>Rodar em um container Docker via Docker Compose:</h3>
   <ul>
     <li>
         Acesse o diretório da aplicacão através do terminal.
