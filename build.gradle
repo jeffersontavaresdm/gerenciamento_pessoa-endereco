@@ -5,8 +5,9 @@ plugins {
 }
 
 group = 'com.api'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '17'
+def projectName = "${project.group}/${project.name}:${project.version}"
 
 configurations {
   compileOnly {
@@ -33,6 +34,10 @@ dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter-api'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
   testImplementation('org.mockito:mockito-core')
+}
+
+bootBuildImage {
+  imageName = projectName
 }
 
 test {
