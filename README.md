@@ -73,7 +73,7 @@
       gradle clean: <i >Remove todos os arquivos gerados anteriormente pelo Gradle.</i >
     </li >
     <li >
-      gradle build: <i >Realiza a construção completa do projeto, compilando os códigos-fonte, rodando testes, gerando
+      gradle build: <i >Realiza a construção completa do projeto, compilando o código fonte, rodando testes, gerando
       artefatos (por exemplo, JARs, WARs, etc.), e outras tarefas definidas no arquivo <b >build.gradle</b >.</i >
     </li >
     <li >
