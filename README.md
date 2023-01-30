@@ -4,7 +4,7 @@
     flex-direction: column;
 " >
   <h1 style="text-align: center" >Gerenciamento de Pessoa/Endereço</h1 >
-  <h3 >Passo a passo para rodar a aplicação via terminal:</h3 >
+  <h3 >Passo a passo para rodar a aplicação via gradle:</h3 >
   <ul >
     <li >Acesse o diretório da aplicacão através do terminal.</li >
     <li >
@@ -35,7 +35,18 @@
       </b >
     </li >
   </ul >
-
+  <h3>Rodar em um container Docker:</h3>
+  <ul>
+    <li>
+        Acesse o diretório da aplicacão através do terminal.
+    </li>
+    <li>
+        Execute o seguinte comando para construir o projeto: <i><b>gradle build</b></i>
+    </li>
+    <li>
+        Execute o seguinte comando do Docker Compose para criar o container e rodar a aplicação: <i><b>docker compose up --build</b></i>
+    </li>
+  </ul>
   <h3 style="text-align: center" >Lista de endpoints da API</h3 >
   <div >
     <b >Pessoa:</b >

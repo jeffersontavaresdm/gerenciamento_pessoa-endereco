@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  gerenciador-pessoa-endereco:
+    container_name: "gerenciador-pessoa-endereco"
+    build:
+      context: "./"
+      dockerfile: "Dockerfile"
+    image: "gerenciador-pessoa-endereco:latest"
+    ports:
+      - "8080:3100"
