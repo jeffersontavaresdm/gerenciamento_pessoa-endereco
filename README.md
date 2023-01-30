@@ -70,14 +70,14 @@
   <h3 >Comandos:</h3 >
   <ul >
     <li >
-      gradle clean: <i >Remove todos os arquivos gerados anteriormente pelo Gradle.</i >
+      <b>gradle clean</b>: <i >Remove todos os arquivos gerados anteriormente pelo Gradle.</i >
     </li >
     <li >
-      gradle build: <i >Realiza a construção completa do projeto, compilando o código fonte, rodando testes, gerando
+      <b>gradle build</b>: <i >Realiza a construção completa do projeto, compilando o código fonte, rodando testes, gerando
       artefatos (por exemplo, JARs, WARs, etc.), e outras tarefas definidas no arquivo <b >build.gradle</b >.</i >
     </li >
     <li >
-      gradle bootRun: <i >Compila e inicializa a aplicação <b >Spring Boot</b >, sem que seja necessário construir um
+      <b>gradle bootRun</b>: <i >Compila e inicializa a aplicação <b >Spring Boot</b >, sem que seja necessário construir um
       artefato (como um JAR) e executá-lo manualmente.
       <br >
       Em vez disso, o <b >Gradle</b > usa a classe principal da aplicação <b >Spring Boot</b > para iniciá-la como um
@@ -85,13 +85,13 @@
     </i >
     </li >
     <li >
-      docker build -t [nome-imagem] ./: <i >
+      <b>docker build -t [nome-imagem] ./</b>: <i >
       Constrói uma imagem <b >Docker</b > a partir do contexto atual ("./") e
       atribui o nome especificado ([nome-imagem]).
     </i >
     </li >
     <li >
-      docker run -p 3100:3100 [nome-imagem]: <i >
+      <b>docker run -p 3100:3100 [nome-imagem]</b>: <i >
       Inicia um novo container a partir da imagem <b >Docker</b > especificada ([nome-imagem]).
       <br >
       O argumento "-p 3100:3100" mapeia a porta 3100 no <b >host</b > para a porta 3100 no <b >container</b >,
@@ -99,7 +99,7 @@
     </i >
     </li >
     <li >
-      gradle bootBuildImage: <i >
+      <b>gradle bootBuildImage</b>: <i >
       Constroi uma imagem <b >Docker</b > a partir de um projeto de aplicação <b >Spring Boot</b >.
       <br >
       Ele usa o <b >Gradle</b > como gerenciador de build e o plugin <b >spring-boot-gradle-plugin</b > para empacotar a
@@ -107,7 +107,7 @@
     </i >
     </li >
     <li >
-      docker compose up: <i >
+      <b>docker compose up</b>: <i >
       Utiliza as configurações feitas no arquivo <b >docker-compose.yml</b >
       para criar e executar os serviços definidos no arquivo.
     </i >
