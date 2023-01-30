@@ -7,4 +7,4 @@ services:
       dockerfile: "Dockerfile"
     image: "gerenciador-pessoa-endereco:latest"
     ports:
-      - "8080:3100"
+      - "3100:3100"
