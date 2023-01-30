@@ -2,14 +2,14 @@ package com.api.gerenciamento_pessoaendereco.entity;
 
 import com.api.gerenciamento_pessoaendereco.entity.dto.EnderecoDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
@@ -23,6 +23,7 @@ public class Endereco {
   private Integer numero;
   private String cidade;
 
+  @ToString.Exclude
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "pessoa_id")
   private Pessoa pessoa;
@@ -37,5 +38,18 @@ public class Endereco {
       this.numero,
       this.cidade
     );
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Endereco endereco = (Endereco) o;
+    return Objects.equals(id, endereco.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return id != null ? id.hashCode() : 0;
   }
 }

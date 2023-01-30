@@ -2,19 +2,18 @@ package com.api.gerenciamento_pessoaendereco.entity;
 
 import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pessoa {
@@ -51,5 +50,18 @@ public class Pessoa {
       this.dataNascimento,
       Optional.ofNullable(getEnderecoPrincipal()).map(Endereco::toDTO).orElse(null)
     );
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Pessoa pessoa = (Pessoa) o;
+    return Objects.equals(id, pessoa.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return id != null ? id.hashCode() : 0;
   }
 }
