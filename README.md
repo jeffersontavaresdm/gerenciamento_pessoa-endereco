@@ -67,7 +67,7 @@
       Execute o comando: <i ><b >docker compose up</b ></i >
     </li >
   </ul >
-  <h4 >Comandos:</h4 >
+  <h3 >Comandos:</h3 >
   <ul >
     <li >
       gradle clean: <i >Remove todos os arquivos gerados anteriormente pelo Gradle.</i >
