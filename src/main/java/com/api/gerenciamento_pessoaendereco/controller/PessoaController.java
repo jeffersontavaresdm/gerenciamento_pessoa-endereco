@@ -4,6 +4,7 @@ import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaDTO;
 import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaPayload;
 import com.api.gerenciamento_pessoaendereco.service.PessoaService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +46,7 @@ public class PessoaController {
   @PostMapping("/criar")
   public ResponseEntity<PessoaDTO> criar(@Valid @RequestBody PessoaPayload payload) {
     PessoaDTO pessoa = pessoaService.criar(payload);
-    return ResponseEntity.ok(pessoa);
+    return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
   }
 
   @PutMapping("/editar/{id}")

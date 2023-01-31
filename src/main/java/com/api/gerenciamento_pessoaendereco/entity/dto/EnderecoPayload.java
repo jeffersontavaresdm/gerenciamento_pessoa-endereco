@@ -2,10 +2,7 @@ package com.api.gerenciamento_pessoaendereco.entity.dto;
 
 import com.api.gerenciamento_pessoaendereco.entity.Endereco;
 import com.api.gerenciamento_pessoaendereco.entity.Pessoa;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public record EnderecoPayload(
   String logradouro,
@@ -14,7 +11,8 @@ public record EnderecoPayload(
   String cep,
 
   @NotNull
-  @Digits(integer = 10, fraction = 0)
+  @Min(value = 1, message = "Numero de digitos não pode ser menor que 1")
+  @Digits(integer = 10, fraction = 0, message = "Numero de digitos deve ser de 1 a 10")
   Integer numero,
 
   @Pattern(regexp = "[a-zA-Z]+", message = "Nome da cidade deve conter somente letras")

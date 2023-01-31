@@ -34,7 +34,8 @@ public class EnderecoController {
     @Valid @RequestBody EnderecoPayload enderecoPayload
   ) {
     EnderecoDTO endereco = enderecoService.criar(pessoaId, enderecoPayload);
-    return ResponseEntity.ok(endereco);
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(endereco);
   }
 
   @PatchMapping("/definir-endereco-principal/{pessoaId}/{enderecoId}")
