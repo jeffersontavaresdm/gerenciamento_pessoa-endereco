@@ -34,8 +34,11 @@ dependencies {
   // Bean Validator
   implementation("org.hibernate:hibernate-validator:8.0.0.Final")
 
-  // jsr305 é uma biblioteca de anotações que fornece recursos para escrever códigos Java mais seguros e confiáveis.
+  // jsr305 - Biblioteca de anotações que fornece recursos para escrever códigos Java mais seguros e confiáveis.
   compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+
+  // Actuator
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
   // Test
   testImplementation 'org.springframework.boot:spring-boot-starter-test'

@@ -15,3 +15,13 @@ spring:
       settings.web-allow-others: false
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+management:
+  endpoint:
+    health:
+      show-details: never
+  endpoints:
+    web:
+      exposure:
+        include: "health"
+      base-path: "/"
