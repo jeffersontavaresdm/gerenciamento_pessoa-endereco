@@ -3,6 +3,7 @@ package com.api.gerenciamento_pessoaendereco.controller;
 import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaDTO;
 import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaPayload;
 import com.api.gerenciamento_pessoaendereco.service.PessoaService;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,13 +43,16 @@ public class PessoaController {
   }
 
   @PostMapping("/criar")
-  public ResponseEntity<PessoaDTO> criar(@RequestBody PessoaPayload payload) {
+  public ResponseEntity<PessoaDTO> criar(@Valid @RequestBody PessoaPayload payload) {
     PessoaDTO pessoa = pessoaService.criar(payload);
     return ResponseEntity.ok(pessoa);
   }
 
   @PutMapping("/editar/{id}")
-  public ResponseEntity<PessoaDTO> editar(@PathVariable("id") Long pessoaId, @RequestBody PessoaPayload payload) {
+  public ResponseEntity<PessoaDTO> editar(
+    @PathVariable("id") Long pessoaId,
+    @Valid @RequestBody PessoaPayload payload
+  ) {
     PessoaDTO pessoa = pessoaService.editar(pessoaId, payload);
     return ResponseEntity.ok(pessoa);
   }

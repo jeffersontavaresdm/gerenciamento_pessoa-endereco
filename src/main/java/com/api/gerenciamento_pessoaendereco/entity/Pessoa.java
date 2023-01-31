@@ -2,7 +2,10 @@ package com.api.gerenciamento_pessoaendereco.entity;
 
 import com.api.gerenciamento_pessoaendereco.entity.dto.PessoaDTO;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +16,6 @@ import java.util.Optional;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pessoa {
@@ -32,7 +34,9 @@ public class Pessoa {
   private List<Endereco> enderecos = new ArrayList<>();
 
   public void adicionarEndereco(Endereco endereco) {
-    this.enderecos.add(endereco);
+    if (endereco != null) {
+      this.enderecos.add(endereco);
+    }
   }
 
   public Endereco getEnderecoPrincipal() {
@@ -63,5 +67,14 @@ public class Pessoa {
   @Override
   public int hashCode() {
     return id != null ? id.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return getClass().getSimpleName() + "(" +
+      "id = " + id + ", " +
+      "nome = " + nome + ", " +
+      "dataNascimento = " + dataNascimento +
+      getEnderecoPrincipal() + ")";
   }
 }

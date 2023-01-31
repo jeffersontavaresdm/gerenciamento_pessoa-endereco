@@ -2,6 +2,7 @@ package com.api.gerenciamento_pessoaendereco.entity;
 
 import com.api.gerenciamento_pessoaendereco.entity.dto.EnderecoDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Objects;

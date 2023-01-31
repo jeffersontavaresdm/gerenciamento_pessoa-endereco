@@ -20,16 +20,24 @@ repositories {
 }
 
 dependencies {
+  // Web
   implementation 'org.springframework.boot:spring-boot-starter-web'
 
+  // Banco de dados
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   runtimeOnly 'com.h2database:h2'
 
+  // Lombok
   implementation 'org.projectlombok:lombok'
-
-  compileOnly("com.google.code.findbugs:jsr305:3.0.2")
   annotationProcessor 'org.projectlombok:lombok'
 
+  // Bean Validator
+  implementation("org.hibernate:hibernate-validator:8.0.0.Final")
+
+  // jsr305 é uma biblioteca de anotações que fornece recursos para escrever códigos Java mais seguros e confiáveis.
+  compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+
+  // Test
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.junit.jupiter:junit-jupiter-api'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
