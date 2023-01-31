@@ -49,12 +49,12 @@ public class PessoaController {
     return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
   }
 
-  @PutMapping("/editar/{id}")
+  @PutMapping("/editar/{pessoaId}")
   public ResponseEntity<PessoaDTO> editar(
-    @PathVariable("id") Long pessoaId,
+    @PathVariable("pessoaId") Long id,
     @Valid @RequestBody PessoaPayload payload
   ) {
-    PessoaDTO pessoa = pessoaService.editar(pessoaId, payload);
+    PessoaDTO pessoa = pessoaService.editar(id, payload);
     return ResponseEntity.ok(pessoa);
   }
 }
