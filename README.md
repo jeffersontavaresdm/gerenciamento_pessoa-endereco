@@ -182,4 +182,5 @@
       </li >
     </ul >
   </div >
+  <h4>Link para visualizar os endpoints: <a target="_blank" href="http://localhost:3100/swagger-ui.html">Swagger</a></h4>
 </div >
