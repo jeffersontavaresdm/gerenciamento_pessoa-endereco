@@ -160,7 +160,7 @@ public class PessoaControllerTest {
           .contentType(MediaType.APPLICATION_JSON)
           .content(converterParaJson(payload))
       )
-      .andExpect(MockMvcResultMatchers.status().isOk())
+      .andExpect(MockMvcResultMatchers.status().isCreated())
       .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
       .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
       .andExpect(MockMvcResultMatchers.jsonPath("$.nome", Matchers.is("Jonh Snow")))

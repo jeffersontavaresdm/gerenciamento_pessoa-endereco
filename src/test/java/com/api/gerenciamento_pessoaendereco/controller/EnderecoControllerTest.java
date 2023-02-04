@@ -104,7 +104,7 @@ public class EnderecoControllerTest {
           .contentType(MediaType.APPLICATION_JSON)
           .content(converterParaJson(enderecoPayload))
       )
-      .andExpect(MockMvcResultMatchers.status().isOk())
+      .andExpect(MockMvcResultMatchers.status().isCreated())
       .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
       .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro", Matchers.is("RUA XYZ")))
       .andExpect(MockMvcResultMatchers.jsonPath("$.numero", Matchers.is(123)));
